@@ -8,6 +8,9 @@ public class Activation
 
     public DateTime LastHeartbeat { get; set; }
 
+    // Custom properties
+    public Guid? ActivatingUserId { get; set; }
+
     // Navigation properties
     public Guid LicenseId { get; set; }
     public License License { get; set; } = null!;
