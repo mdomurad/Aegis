@@ -239,7 +239,7 @@ public class LicenseService(AegisDbContext dbContext)
 
                 // Acquire a lock (using a database row lock)
                 var lockObject = await dbContext.Licenses.FirstOrDefaultAsync(l =>
-                    l.LicenseKey == licenseKey
+                    l.LicenseKey.ToLower() == licenseKey.ToLower()
                 );
                 if (lockObject == null)
                     return new LicenseActivationResult(
