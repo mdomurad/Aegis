@@ -353,6 +353,12 @@ public class LicenseService(AegisDbContext dbContext)
         return await DisconnectLicenseUserInternal(licenseKey, hardwareId, LicenseType.Concurrent);
     }
 
+    /// <summary>
+    /// Disconnects a floating license user by deactivating the license associated with the specified license key and optional hardware ID.
+    /// </summary>
+    /// <param name="licenseKey">The license key to disconnect.</param>
+    /// <param name="hardwareId">The optional hardware ID associated with the license user.</param>
+    /// <returns>A <see cref="LicenseDeactivationResult"/> representing the result of the deactivation operation.</returns>
     public async Task<LicenseDeactivationResult> DisconnectFloatingLicenseuser(
         string licenseKey,
         string? hardwareId = null
