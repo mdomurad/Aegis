@@ -359,7 +359,7 @@ public class LicenseService(AegisDbContext dbContext)
     /// <param name="licenseKey">The license key to disconnect.</param>
     /// <param name="hardwareId">The optional hardware ID associated with the license user.</param>
     /// <returns>A <see cref="LicenseDeactivationResult"/> representing the result of the deactivation operation.</returns>
-    public async Task<LicenseDeactivationResult> DisconnectFloatingLicenseuser(
+    public async Task<LicenseDeactivationResult> DisconnectFloatingLicenseUser(
         string licenseKey,
         string? hardwareId = null
     )
