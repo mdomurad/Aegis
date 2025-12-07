@@ -350,9 +350,26 @@ public class LicenseService(AegisDbContext dbContext)
         string? hardwareId = null
     )
     {
+        return await DisconnectLicenseUserInternal(licenseKey, hardwareId, LicenseType.Concurrent);
+    }
+
+    public async Task<LicenseDeactivationResult> DisconnectFloatingLicenseuser(
+        string licenseKey,
+        string? hardwareId = null
+    )
+    {
+        return await DisconnectLicenseUserInternal(licenseKey, hardwareId, LicenseType.Floating);
+    }
+
+    private async Task<LicenseDeactivationResult> DisconnectLicenseUserInternal(
+        string licenseKey,
+        string? hardwareId,
+        LicenseType expectedType
+    )
+    {
         var license = await dbContext.Licenses.FirstOrDefaultAsync(l => l.LicenseKey == licenseKey);
 
-        return license is { Type: LicenseType.Concurrent }
+        return license is { Type: var type } && (type == expectedType)
             ? await RevokeLicenseAsync(licenseKey, hardwareId)
             : new LicenseDeactivationResult(
                 false,
