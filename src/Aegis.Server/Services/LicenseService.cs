@@ -311,6 +311,7 @@ public class LicenseService(AegisDbContext dbContext)
                             UserId = license.UserId,
                             MachineId = hardwareId!,
                             ActivationDate = DateTime.UtcNow,
+                            ActivatingUserId = activatingUserId,
                         }
                     );
 
